@@ -1,4 +1,3 @@
-
 class Room1 extends PhysicsScene {
     constructor() {
         super("Room1", "First Room");
@@ -9,7 +8,7 @@ class Room1 extends PhysicsScene {
         this.load.image('player', 'player.png');
         this.load.image('box', 'box.png');
         this.load.image('ground', 'ground.png');
-        this.load.image('door', 'flag.png');
+        this.load.image('flag', 'flag.png');
         this.load.image('background', 'wallpaper.png');
     }
 
@@ -34,7 +33,7 @@ class Room1 extends PhysicsScene {
 
         //FLAG
         const door = this.physics.add.staticGroup();
-        door.create(550, 500, "door").setScale(.2).refreshBody();;
+        door.create(550, 500, "flag").setScale(.2).refreshBody();;
         this.physics.add.collider(this.player, door, () => {
             this.time.delayedCall(1000, () => this.scene.start('Room2'));
 
@@ -107,7 +106,7 @@ class Room2 extends PhysicsScene {
         this.load.image('player', 'player.png');
         this.load.image('box', 'box.png');
         this.load.image('ground', 'platform.png');
-        this.load.image('door', 'door.png');
+        this.load.image('flag', 'flag.png');
         this.load.image('background', 'wallpaper.png');
     }
 
@@ -139,7 +138,7 @@ class Room2 extends PhysicsScene {
         });
         
         const door = this.physics.add.staticGroup();
-        door.create(550, 360, "door").setScale(.2).refreshBody();;
+        door.create(550, 360, "flag").setScale(.2).refreshBody();;
         this.physics.add.collider(this.player, door, () => {
             this.cameras.main.fade(1000, 0,0,0);
             this.time.delayedCall(1000, () => this.scene.start('Room3'));
@@ -213,7 +212,7 @@ class Room3 extends PhysicsScene {
         this.load.image('player', 'player.png');
         this.load.image('box', 'box.png');
         this.load.image('ground', 'platform.png');
-        this.load.image('door', 'door.png');
+        this.load.image('flag', 'flag.png');
         this.load.image('background', 'wallpaper.png');
     }
 
@@ -253,11 +252,10 @@ class Room3 extends PhysicsScene {
         });
         
         const door = this.physics.add.staticGroup();
-        door.create(600, 400, "door").setScale(.2).refreshBody();;
+        door.create(600, 400, "flag").setScale(.2).refreshBody();;
         this.physics.add.collider(this.player, door, () => {
             this.cameras.main.fade(1000, 0,0,0);
-            this.time.delayedCall(1000, () => this.scene.start('Room3'));
-
+            this.time.delayedCall(1000, () => this.scene.start('Intro'));
         });
 
         // Set up arrow keys for player movement
@@ -289,31 +287,29 @@ class Room3 extends PhysicsScene {
             }
         });
 
-        // Check for overlap between player and box
         this.physics.add.overlap(this.player, this.box, () => {
-            // If player is pressing the up arrow key and the box is above the player, push the box
+    
             if (this.cursors.up.isDown && this.box.y < this.player.y) {
                 this.box.body.setVelocityY(-100);
             }
-            // If player is pressing the down arrow key and the box is below the player, push the box
+       
             else if (this.cursors.down.isDown && this.box.y > this.player.y) {
                 this.box.body.setVelocityY(100);
             }
-            // If player is pressing the left arrow key and the box is to the left of the player, push the box to the left
+        
             else if (this.cursors.left.isDown && this.box.x < this.player.x) {
                 this.box.body.setVelocityX(-100);
             }
-            // If player is pressing the right arrow key and the box is to the right of the player, push the box to the right
+           
             else if (this.cursors.right.isDown && this.box.x > this.player.x) {
                 this.box.body.setVelocityX(100);
             }
-            // Otherwise, stop moving the box
+    
             else {
                 this.box.body.setVelocity(0);
             }
         }, null, this);
         
-        // Set up collision between player and box
         this.physics.add.collider(this.player, this.box);
     }
 }
