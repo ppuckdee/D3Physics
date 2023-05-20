@@ -1,6 +1,6 @@
-class Room1 extends PhysicsScene {
+class Level1 extends PhysicsScene {
     constructor() {
-        super("Room1", "First Room");
+        super("Level1", "First level");
     }
 
     preload(){
@@ -35,7 +35,7 @@ class Room1 extends PhysicsScene {
         const door = this.physics.add.staticGroup();
         door.create(550, 500, "flag").setScale(.2).refreshBody();;
         this.physics.add.collider(this.player, door, () => {
-            this.time.delayedCall(1000, () => this.scene.start('Room2'));
+            this.time.delayedCall(1000, () => this.scene.start('Level2'));
 
         });
         
@@ -96,9 +96,9 @@ class Room1 extends PhysicsScene {
 }
 
 
-class Room2 extends PhysicsScene {
+class Level2 extends PhysicsScene {
     constructor() {
-        super("Room2", "Second Room");
+        super("Level2", "Second level");
     }
 
     preload(){
@@ -141,7 +141,7 @@ class Room2 extends PhysicsScene {
         door.create(550, 360, "flag").setScale(.2).refreshBody();;
         this.physics.add.collider(this.player, door, () => {
             this.cameras.main.fade(1000, 0,0,0);
-            this.time.delayedCall(1000, () => this.scene.start('Room3'));
+            this.time.delayedCall(1000, () => this.scene.start('Level3'));
 
         });
 
@@ -202,9 +202,9 @@ class Room2 extends PhysicsScene {
     }
 }
 
-class Room3 extends PhysicsScene {
+class Level3 extends PhysicsScene {
     constructor() {
-        super("Room3", "Last Level");
+        super("Level3", "Last Level");
     }
 
     preload(){
@@ -326,7 +326,7 @@ class Intro extends Phaser.Scene {
         this.add.text(50,100, "\n Click anywhere to begin.").setFontSize(20);
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
-            this.time.delayedCall(1000, () => this.scene.start('Room1'));
+            this.time.delayedCall(1000, () => this.scene.start('Level1'));
         });
     }
 }
@@ -350,6 +350,6 @@ const game = new Phaser.Game({
         }
     },
 
-    scene: [Intro, Room1, Room2, Room3],
+    scene: [Intro, Level1, Level2, Level3],
     title: "Physics Game D3",
 });
