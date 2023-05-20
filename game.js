@@ -250,7 +250,10 @@ class Level3 extends PhysicsScene {
         this.physics.add.collider(this.box1, platforms, () => {
             this.box1.body.setVelocity(0);
         });
-        
+
+        this.physics.add.collider(this.player, this.box1); // collision between player and box1
+        this.physics.add.collider(this.box, this.box1); 
+
         const door = this.physics.add.staticGroup();
         door.create(600, 400, "flag").setScale(.2).refreshBody();;
         this.physics.add.collider(this.player, door, () => {
