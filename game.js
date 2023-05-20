@@ -235,7 +235,7 @@ class Level3 extends PhysicsScene {
         this.physics.add.collider(this.player, platforms);
 
         
-        this.box = this.physics.add.sprite(300, 300, "box");
+        this.box = this.physics.add.sprite(300, 300, "player");
         this.box.setScale(3);
         this.box.setCollideWorldBounds(true);
         this.box.body.setFriction(1, 1);
@@ -313,8 +313,6 @@ class Level3 extends PhysicsScene {
         this.physics.add.collider(this.player, this.box);
     }
 }
-
-    
 
 class Intro extends Phaser.Scene {
     constructor() {
