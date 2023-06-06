@@ -1,6 +1,6 @@
 class Level1 extends PhysicsScene {
     constructor() {
-        super("Level1", "First level");
+        super("Level1", "Try and jump over those boxes...");
     }
 
     preload(){
@@ -322,9 +322,9 @@ class Intro extends Phaser.Scene {
         super('intro')
     }
     create() {
-        this.add.text(50,50, "Physics Game D3").setFontSize(50);
+        this.add.text(50,50, "S8 Prototype").setFontSize(50);
         this.add.text(50,100, "\n").setFontSize(20);
-        this.add.text(50,100, "\n Click anywhere to begin.").setFontSize(20);
+        this.add.text(50,100, "\n Click to begin!").setFontSize(20);
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
             this.time.delayedCall(1000, () => this.scene.start('Level1'));
